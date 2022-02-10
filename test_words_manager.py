@@ -24,7 +24,7 @@ class TestFindMethod(unittest.TestCase):
         words = []
         manager = WordsManager(words)
         word_to_search = "eos"
-        self.assertRaises(ValueError, manager.find(word_to_search))
+        self.assertRaisesRegex(ValueError, "Words array cannot be empty", manager.find, word_to_search)
 
     def test_empty_string_to_search(self):
         words = ["helloworld", "foo", "eso", "stylight_team", "seo"]
