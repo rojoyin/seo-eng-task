@@ -33,3 +33,18 @@ we can iterate over each word counting the number of characters and compressing 
 the string `adddccccbb` maps to `a1b2c4d3`, the compression algorithm will iterate the English letters one per one and counting
 each one of the chars, this way this takes constant time per each string and constant space per each string, giving a time complexity of O(n)
 - Querying phase, will be done applying the same compressing algorithm in the queried string and accessing the list by key, which is linear time.
+
+# Questionary
+
+1. If the size of the initial string list is very large, would that influence the
+efficiency of the approach? 
+
+The current implementation is not ideal considering that time complexity could be very high, at least in the initial load of data
+and representation as dictionary, however this will be amortized over the time based on the amount of queries.
+
+2. What if the number of “find” requests gets
+extremely large? Do you need to restructure/rethink the approach?
+
+In this case, it would be necessary to add a couple of components in the architecture, being
+a message broker (redis, rabbit, other) and a task processor library (celery), this way we have 
+the chance to run concurrent queries.
